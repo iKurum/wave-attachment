@@ -11,9 +11,9 @@ $(function() {
   let screenSizeWidth = $("body").width();
   let screenSizeHeight = $("body").height();
   let halfvmin =
-    screenSizeWidth > screenSizeHeight
+    (screenSizeWidth > screenSizeHeight
       ? screenSizeHeight / 2
-      : screenSizeWidth / 2;
+      : screenSizeWidth / 2) * 0.9;
 
   //点击水波
   $(".g-container").on("click", function(e) {
@@ -26,18 +26,22 @@ $(function() {
       ($(this).position().top < 0 &&
         screenSizeHeight + $(this).position().top - y > halfvmin / 5)
     ) {
-      waveMove(x, y);
+      waveMove(x, y, halfvmin);
     }
   });
 
   //隐藏header
-  $("#box").scroll(function () {
+  $("#box").scroll(function() {
     if ($(this).scrollTop() > halfvmin / 5) {
-      $("header").hide(200);
+      $("header > ul > li").hide();
+      $("header").hide("slow", "linear");
     } else {
-      $("header").show(200);
-    };
-  })
+      $("header").show("slow", "linear");
+      setTimeout(function() {
+        $("header > ul > li").show();
+      }, 900);
+    }
+  });
 
   //一言
   $("section").each(function() {
@@ -56,7 +60,7 @@ $(function() {
 });
 
 //添加水波动画元素
-function waveMove(x, y) {
+function waveMove(x, y, halfvmin) {
   $(".g-container").append(`
             <div class="g-position" style="top:${y - halfvmin}px; left:${x -
     halfvmin}px;">
