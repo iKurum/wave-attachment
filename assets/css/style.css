@@ -1,5 +1,6 @@
 body,
 html,
+main,
 section,
 header,
 footer,
@@ -40,7 +41,7 @@ header > ul > li::after {
   width: 0;
   height: 100%;
   border-bottom: 2px solid #000;
-  transition: all 0.6s linear;
+  transition: all 0.4s linear;
 }
 
 header > ul > li:hover::after {
@@ -92,7 +93,7 @@ blockquote > span {
 }
 
 /* 内容 */
-#box {
+main {
   width: 102vw;
   height: 100vh;
   overflow-y: auto;
@@ -140,21 +141,21 @@ section {
 }
 
 .g-wave1 {
-  background-size: auto 106%;
+  background-size: auto 105%;
   animation: wave 1s ease-out 0.05s;
   animation-fill-mode: forwards;
   z-index: 10;
 }
 
 .g-wave2 {
-  background-size: auto 102%;
+  background-size: auto 101%;
   animation: wave 1s ease-out 0.1s;
   animation-fill-mode: forwards;
   z-index: 20;
 }
 
 .g-wave3 {
-  background-size: auto 104%;
+  background-size: auto 103%;
   animation: wave 1s ease-out 0.15s;
   animation-fill-mode: forwards;
   z-index: 30;
@@ -185,4 +186,13 @@ section {
     height: 10vmin;
     opacity: 0;
   }
+}
+
+/* 返回顶部按钮 */
+.gotop {
+  position: fixed;
+  right: 2vmin;
+  bottom: 3vmin;
+  cursor: pointer;
+  display: none;
 }

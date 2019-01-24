@@ -31,20 +31,22 @@ $(function() {
   });
 
   //隐藏header
-  $("#box").scroll(function() {
+  $("main").scroll(function() {
     if ($(this).scrollTop() > halfvmin / 5) {
       $("header > ul > li").hide();
       $("header").hide("slow", "linear");
+      $(".gotop").fadeIn();
     } else {
       $("header").show("slow", "linear");
       setTimeout(function() {
         $("header > ul > li").show();
       }, 900);
+      $(".gotop").fadeOut();
     }
   });
 
   //一言
-  $("section").each(function() {
+  $("main > section:even").each(function() {
     fetch("https://v1.hitokoto.cn/")
       .then(res => res.json())
       .then(data => {
@@ -52,12 +54,20 @@ $(function() {
               <blockquote>
                 ${data.hitokoto}
                 <br>
+                <br>
+                <br>
                 <span>From: ${data.from}</span>
               </blockquote>
           `);
       });
   });
+
+  //回到顶部
+  $(".gotop").on("click", function () {
+    $("main").animate({ scrollTop: 0 }, 1000);
+  });
 });
+
 
 //添加水波动画元素
 function waveMove(x, y, halfvmin) {
