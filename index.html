@@ -18,10 +18,23 @@
     </style>
   </head>
   <body style="overflow: hidden;">
-    <header>
+    <article id="load">
+      <span class="load">
+        <!-- <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-xiangxiajiantou"></use>
+        </svg> -->
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-xiangxiajiantou"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-xiangxiajiantou"></use>
+        </svg>
+      </span>
+    </article>
+    <header id="home">
       <ul>
-        <li>不可思议的CSS</li>
-        <li>导航栏</li>
+        <li class="page" data-scr="#load">Home</li>
+        <li class="page" data-scr="#home">wave</li>
         <li>光标小下划线跟随</li>
         <li>PURE CSS</li>
         <li>Nav Underline</li>
@@ -68,9 +81,15 @@
         <use xlink:href="#icon-huidingbu"></use>
       </svg>
     </main>
+    <input
+      type="file"
+      id="files"
+      style="display: none"
+      onchange="fileImport();"
+    />
 
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://at.alicdn.com/t/font_1029472_kmerklaukwj.js"></script>
+    <script src="https://at.alicdn.com/t/font_1029472_3tfp4lg8ld1.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

@@ -8,27 +8,27 @@ $(function() {
   };
 
   let x, y;
-  let screenSizeWidth = $("body").width();
-  let screenSizeHeight = $("body").height();
+  let screenSizeWidth = $("main").width() < $("body").width() ? $("main").width() : $("body").width();
+  let screenSizeHeight = $("main").height() < $("body").height() ? $("main").height() : $("body").height();
   let halfvmin =
     (screenSizeWidth > screenSizeHeight
       ? screenSizeHeight / 2
-      : screenSizeWidth / 2) * 0.9;
+      : screenSizeWidth / 2);
 
   //点击水波
-  $(".g-container").on("click", function(e) {
-    x = e.pageX;
-    y = e.pageY;
+  // $(".g-container").on("click", function(e) {
+  //   x = e.pageX;
+  //   y = e.pageY;
 
-    if (
-      ($(this).position().top > 0 &&
-        y - $(this).position().top > halfvmin / 5) ||
-      ($(this).position().top < 0 &&
-        screenSizeHeight + $(this).position().top - y > halfvmin / 5)
-    ) {
-      waveMove(x, y, halfvmin);
-    }
-  });
+  //   if (
+  //     ($(this).position().top > 0 &&
+  //       y - $(this).position().top > halfvmin / 5) ||
+  //     ($(this).position().top < 0 &&
+  //       screenSizeHeight + $(this).position().top - y > halfvmin / 5)
+  //   ) {
+  //     waveMove(x, y, halfvmin);
+  //   }
+  // });
 
   //隐藏header
   $("main").scroll(function() {
@@ -66,24 +66,40 @@ $(function() {
   $(".gotop").on("click", function () {
     $("main").animate({ scrollTop: 0 }, 1000);
   });
+  
+  $(".load").on("click", function () {
+    $("#load").animate({ height: 0 }, 1000);
+  })
+
+  if (window.addEventListener)//FF,火狐浏览器会识别该方法
+    window.addEventListener('DOMMouseScroll', scrollWheel, false);
+  window.onmousewheel = document.onmousewheel = scrollWheel;//W3C
 });
 
 
-//添加水波动画元素
-function waveMove(x, y, halfvmin) {
-  $(".g-container").append(`
-            <div class="g-position" style="top:${y - halfvmin}px; left:${x -
-    halfvmin}px;">
-                <div class="g-center">
-                    <div class="wave g-wave1"></div>
-                    <div class="wave g-wave2"></div>
-                    <div class="wave g-wave3"></div>
-                    <div class="wave g-wave4"></div>
-                </div>
-            </div>
-        `);
+// //添加水波动画元素
+// function waveMove(x, y, halfvmin) {
+//   $(".g-container").append(`
+//             <div class="g-position" style="top:${y - halfvmin}px; left:${x - halfvmin}px;">
+//                 <div class="g-center">
+//                     <div class="wave g-wave1"></div>
+//                     <div class="wave g-wave2"></div>
+//                     <div class="wave g-wave3"></div>
+//                     <div class="wave g-wave4"></div>
+//                 </div>
+//             </div>
+//         `);
 
-  setTimeout(function() {
-    $(`.g-position`).remove();
-  }, 1500);
+//   setTimeout(function () {
+//     $(`.g-position`).fadeOut();    
+//     $(`.g-position`).remove();
+//   }, 2000);
+// }
+
+//首页收起
+function scrollWheel(e) {
+  e = e || window.event;
+  if (e.wheelDelta && $("#load").height() != 0) {
+    $("#load").animate({ height: 0 }, 1000);
+  }
 }
